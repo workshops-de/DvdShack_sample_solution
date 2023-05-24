@@ -1,5 +1,6 @@
 package de.workshops.dvdshack;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,6 +10,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @SpringBootApplication
+@Slf4j
 public class DvdShackApplication implements CommandLineRunner {
 
 	@Autowired
@@ -20,8 +22,8 @@ public class DvdShackApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws SQLException {
-		System.out.println(
-				dataSource.getConnection().getMetaData().getURL()
-		);
+		try (var connection = dataSource.getConnection()) {
+			log.info("Connection established: " + connection.getMetaData().getURL());
+		}
 	}
 }
