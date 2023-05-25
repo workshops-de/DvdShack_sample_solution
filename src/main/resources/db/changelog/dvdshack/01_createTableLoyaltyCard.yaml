@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTableLoyaltyCard
+      author: workshops
+      changes:
+        - createTable:
+            tableName: loyalty_card
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: points
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_customer_id
+                    referencedTableName: customer
+                    referencedColumnNames: customer_id
+      rollback:
+        - dropTable:
+            tableName: loyalty_card
