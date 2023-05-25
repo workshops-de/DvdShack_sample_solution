@@ -7,3 +7,5 @@ spring:
     password: ${PG_PASSWORD}
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    baseline-on-migrate: true
