@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: addBirthdayColumnToCustomer
+      author: workshops
+      changes:
+        - addColumn:
+            tableName: customer
+            columns:
+              - column:
+                  name: birthday
+                  type: date
+      rollback:
+        - dropColumn:
+            tableName: customer
+            columnName: birthday

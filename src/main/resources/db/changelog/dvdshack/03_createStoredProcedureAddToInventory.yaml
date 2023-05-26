@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: createStoredProcedureAddToInventory
+      author: workshops
+      changes:
+        - createProcedure:
+            procedureName: add_to_inventory
+            procedureBody: |
+              CREATE PROCEDURE add_to_inventory(IN in_film_id integer, IN in_store_id integer)
+              LANGUAGE SQL
+              AS $$
+                INSERT INTO inventory (film_id, store_id) VALUES (in_film_id, in_store_id);
+              $$;
+      rollback:
+        - dropProcedure:
+            procedureName: add_to_inventory

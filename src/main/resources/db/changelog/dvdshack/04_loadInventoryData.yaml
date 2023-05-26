@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: createStoredProcedureAddToInventory
+      author: workshops
+      changes:
+        - loadData:
+            file: inventory.csv
+            tableName: inventory
+            columns:
+              - column:
+                  name: film_id
+                  type: NUMERIC
+              - column:
+                  name: store_id
+                  type: NUMERIC
