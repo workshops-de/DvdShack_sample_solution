@@ -1,10 +1,10 @@
 spring:
   datasource:
-    url: jdbc:postgresql://roasted-tomato.db.elephantsql.com:5432/dvdshack_dachser_4 # adapt URL to match your database instance, replacing SUBDOMAIN and DATABASE_NAME
+    url: jdbc:postgresql://roasted-tomato.db.elephantsql.com:5432/dvdshack_default # adapt URL to match your database instance, replacing SUBDOMAIN and DATABASE_NAME
     driver-class-name: org.postgresql.Driver
-    username: dvdshack_dachser_4 # adapt username accordingly
+    username: dvdshack_default # adapt username accordingly
     # set PG_PASSWORD in your environment, e.g., by running "export PG_PASSWORD=..." in the command line
-    password: JAY-fuzzy-leopard
+    password: ${PG_PASSWORD}
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     generate-ddl: false
