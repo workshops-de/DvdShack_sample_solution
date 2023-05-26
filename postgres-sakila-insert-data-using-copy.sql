@@ -1728,9 +1728,16 @@ COPY public.actor (actor_id, first_name, last_name, last_update) FROM stdin;
 ALTER TABLE actor ENABLE TRIGGER ALL;
 
 
--- Import data into table: staff
+-- Import data into tables: staff
 
 ALTER TABLE staff DISABLE TRIGGER ALL;
+
+-- Import data into table: store
+
+ALTER TABLE store DISABLE TRIGGER ALL;
+
+BEGIN;
+SET CONSTRAINTS all DEFERRED;
 --
 -- PostgreSQL database dump
 --
@@ -1744,21 +1751,6 @@ COPY public.staff (staff_id, first_name, last_name, address_id, email, store_id,
 2	Jon	Stephens	4	Jon.Stephens@sakilastaff.com	2	t	Jon	8cb2237d0679ca88db6464eac60da96345513964	2006-02-15 04:57:16	\N
 \.
 
-
---
--- PostgreSQL database dump complete
---
-
-ALTER TABLE staff ENABLE TRIGGER ALL;
-
-
--- Import data into table: store
-
-ALTER TABLE store DISABLE TRIGGER ALL;
---
--- PostgreSQL database dump
---
-
 --
 -- Data for Name: store; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1768,10 +1760,12 @@ COPY public.store (store_id, manager_staff_id, address_id, last_update) FROM std
 2	2	2	2006-02-15 04:57:12
 \.
 
-
 --
 -- PostgreSQL database dump complete
 --
+COMMIT;
+
+ALTER TABLE staff ENABLE TRIGGER ALL;
 
 ALTER TABLE store ENABLE TRIGGER ALL;
 
