@@ -15,6 +15,8 @@
 	<description>Sample project for &quot;Spring Boot: Databases &amp; Persistence&quot; advanced workshop</description>
 	<properties>
 		<java.version>17</java.version>
+		<hypersistence-utils-hibernate-60.version>3.4.1</hypersistence-utils-hibernate-60.version>
+		<javafaker.version>1.0.2</javafaker.version>
 		<rider-core.version>1.37.1</rider-core.version>
 	</properties>
 	<dependencies>
@@ -47,6 +49,11 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>io.hypersistence</groupId>
+			<artifactId>hypersistence-utils-hibernate-60</artifactId>
+			<version>${hypersistence-utils-hibernate-60.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>com.github.database-rider</groupId>
 			<artifactId>rider-core</artifactId>
 			<version>${rider-core.version}</version>
@@ -75,15 +82,16 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
-			<groupId>io.hypersistence</groupId>
-			<artifactId>hypersistence-utils-hibernate-60</artifactId>
-			<version>3.3.2</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>${javafaker.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
