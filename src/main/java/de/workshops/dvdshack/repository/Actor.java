@@ -1,11 +1,18 @@
 package de.workshops.dvdshack.repository;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Actor extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACTOR_ID_SEQ")
     @SequenceGenerator(name = "ACTOR_ID_SEQ", sequenceName = "actor_actor_id_seq", allocationSize = 1)
