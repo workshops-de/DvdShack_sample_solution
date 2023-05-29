@@ -14,6 +14,7 @@ import java.util.List;
 public class FilmJdbcTemplateRepository {
 
     private final JdbcTemplate template;
+
     private final NamedParameterJdbcTemplate namedTemplate;
 
     public FilmJdbcTemplateRepository(JdbcTemplate template, NamedParameterJdbcTemplate namedTemplate) {
