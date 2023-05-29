@@ -6,6 +6,7 @@ import java.time.Year;
 import java.util.List;
 
 public interface FilmJpaRepository extends JpaRepository<Film, Integer> {
+
     int countFilmsByReleaseYear(Year releaseYear);
 
     List<Film> findAllFilmsByRating(Rating rating);
