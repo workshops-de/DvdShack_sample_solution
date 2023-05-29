@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public class ActorJdbcTemplateRepository {
+
     private final JdbcTemplate template;
 
     public ActorJdbcTemplateRepository(JdbcTemplate template) {

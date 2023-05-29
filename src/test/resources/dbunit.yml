@@ -1,0 +1,3 @@
+disableSequenceFiltering: true
+properties:
+  caseSensitiveTableNames: true
