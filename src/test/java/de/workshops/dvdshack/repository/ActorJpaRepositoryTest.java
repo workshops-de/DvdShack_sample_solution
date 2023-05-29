@@ -1,5 +1,8 @@
 package de.workshops.dvdshack.repository;
 
+import com.github.database.rider.core.api.dataset.DataSet;
+import com.github.database.rider.core.api.dataset.SeedStrategy;
+import com.github.database.rider.junit5.api.DBRider;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -11,7 +14,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Sql(scripts={"/actors.sql"})
+@DBRider
 class ActorJpaRepositoryTest {
+
     @Autowired
     ActorJpaRepository repository;
 
@@ -49,5 +54,18 @@ class ActorJpaRepositoryTest {
                 .hasSize(1)
                 .extracting("lastName")
                 .containsOnly("Cox");
+    }
+
+    @Test
+    @DataSet(
+            value = "datasets/actors.yml",
+            strategy = SeedStrategy.INSERT
+    )
+    void shouldFindAdditionalActorsFromDataSetByLastName() {
+        final var actors = repository.findAllByFirstNameAndLastName("Tanya", "Watson");
+        assertThat(actors)
+                .hasSizeGreaterThanOrEqualTo(1)
+                .extracting("lastName")
+                .containsOnly("Watson");
     }
  }
