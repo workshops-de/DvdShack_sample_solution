@@ -15,13 +15,10 @@
 	<description>Sample project for &quot;Spring Boot: Databases &amp; Persistence&quot; advanced workshop</description>
 	<properties>
 		<java.version>17</java.version>
-<<<<<<< HEAD
 		<schematic.version>0.2.0</schematic.version>
-=======
 		<hypersistence-utils-hibernate-60.version>3.4.1</hypersistence-utils-hibernate-60.version>
 		<javafaker.version>1.0.2</javafaker.version>
 		<rider-core.version>1.37.1</rider-core.version>
->>>>>>> Populate_a_database_table_with_sample_data
 	</properties>
 	<dependencies>
 		<dependency>
