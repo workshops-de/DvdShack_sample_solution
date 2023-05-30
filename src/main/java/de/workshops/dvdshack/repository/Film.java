@@ -13,6 +13,8 @@ import java.util.Set;
 @Entity
 public class Film extends BaseEntity {
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FILM_ID_SEQ")
     @SequenceGenerator(name = "FILM_ID_SEQ", sequenceName = "film_film_id_seq", allocationSize = 1)
