@@ -13,7 +13,7 @@ public interface ActorJpaRepository extends JpaRepository<Actor, Integer> {
 
     Actor findFirstAsActorByFirstNameAndLastName(String firstName, String lastName);
 
-    List<Actor> findAllByFirstNameAndLastName(String mike, String cox);
+    List<Actor> findAllByFirstNameAndLastName(String firstName, String lastName);
 
     List<Actor> findAllByLastNameStartingWithAndFirstNameContainingOrderByIdDesc(String lastName, String firstName);
 }
