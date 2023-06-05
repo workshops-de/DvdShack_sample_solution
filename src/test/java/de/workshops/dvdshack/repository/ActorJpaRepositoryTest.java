@@ -68,4 +68,22 @@ class ActorJpaRepositoryTest {
                 .extracting("lastName")
                 .containsOnly("Watson");
     }
+
+    @Test
+    void shouldFindActorsByLastNameAndFirstName() {
+        final var actors = repository.findAllByLastNameStartingWithAndFirstNameContainingOrderByIdDesc("HO", "EN");
+        assertThat(actors)
+                .hasSize(3);
+
+        var firstNames = actors.stream().map(Actor::getFirstName).toList();
+        assertThat(firstNames)
+                .contains("MENA", "KENNETH", "GENE");
+    }
+
+    @Test
+    void shouldFindActorsByParameterizedQueryMethod() {
+        final var actors = repository.queryActors("PENELOPE", "GUINESS");
+        assertThat(actors)
+                .hasSize(1);
+    }
  }
