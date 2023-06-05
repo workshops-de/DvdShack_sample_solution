@@ -25,7 +25,7 @@ class ActorServiceTest {
     private ActorJpaRepository actorJpaRepository;
 
     @Test
-    void testFindActorsByLastName() throws Exception {
+    void testFindActorsByLastName() {
         // Arrange
         Faker faker = new Faker();
 
@@ -42,10 +42,10 @@ class ActorServiceTest {
         Mockito.when(actorJpaRepository.findActorsByLastName(lastName)).thenReturn(findActorsByLastNameResult);
 
         // Act
-        List<Actor> list = actorService.findActorsByLastName(lastName);
+        List<Actor> actorList = actorService.findActorsByLastName(lastName);
 
         // Assert
-        List<Actor> listExpected = new ArrayList<>(
+        List<Actor> expectedActorList = new ArrayList<>(
                 Collections.singletonList(
                         Actor.builder()
                                 .firstName(firstName)
@@ -53,6 +53,6 @@ class ActorServiceTest {
                                 .build()
                 )
         );
-        assertEquals(listExpected, list);
+        assertEquals(expectedActorList, actorList);
     }
 }
