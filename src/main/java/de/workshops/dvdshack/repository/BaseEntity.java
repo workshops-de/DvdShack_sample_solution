@@ -1,9 +1,11 @@
 package de.workshops.dvdshack.repository;
 
+import jakarta.persistence.MappedSuperclass;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-//@MappedSuperclass
+@MappedSuperclass
 public class BaseEntity {
     private LocalDateTime lastUpdate;
 
