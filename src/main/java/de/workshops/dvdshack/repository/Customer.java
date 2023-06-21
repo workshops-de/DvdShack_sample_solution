@@ -2,6 +2,7 @@ package de.workshops.dvdshack.repository;
 
 import jakarta.persistence.*;
 
+import java.sql.Date;
 import java.util.Objects;
 
 @Entity
@@ -12,6 +13,8 @@ public class Customer extends BaseEntity {
     @SequenceGenerator(name = "CUSTOMER_ID_SEQ", sequenceName = "customer_customer_id_seq", allocationSize = 1)
     @Column(name = "customer_id", nullable = false)
     private Integer id;
+
+    private Date birthday;
 
     @Override
     public boolean equals(Object o) {
