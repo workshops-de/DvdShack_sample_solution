@@ -56,4 +56,13 @@ class FilmJpaRepositoryTest {
                 .isEmpty();
     }
 
+    @Test
+    void shouldFindActorsByFilmAndFirstnameLikeOrLastnameLike() {
+        final var films = repository.findByTitleAndReleaseYearOrLength(
+                "STRANGERS GRAFFITI",
+                Year.of(2006),
+                119);
+        assertThat(films)
+                .hasSize(6); // This is unexpected, because the title is unique and hence there should be only entry here.
+    }
 }
