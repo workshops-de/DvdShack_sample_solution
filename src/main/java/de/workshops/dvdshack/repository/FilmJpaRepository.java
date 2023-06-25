@@ -1,10 +1,12 @@
 package de.workshops.dvdshack.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.time.Year;
 import java.util.List;
 
+@Repository
 public interface FilmJpaRepository extends JpaRepository<Film, Integer> {
 
     int countFilmsByReleaseYear(Year releaseYear);
