@@ -1,12 +1,14 @@
 package de.workshops.dvdshack.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface ActorJpaRepository extends JpaRepository<Actor, Integer> {
 
     List<Actor> findActorsByLastName(String lastName);
