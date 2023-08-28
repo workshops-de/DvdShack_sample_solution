@@ -15,7 +15,7 @@
 	<description>Sample project for &quot;Spring Boot: Databases &amp; Persistence&quot; advanced workshop</description>
 	<properties>
 		<java.version>17</java.version>
-		<hypersistence-utils-hibernate-60.version>3.5.1</hypersistence-utils-hibernate-60.version>
+		<hypersistence-utils-hibernate-60.version>3.5.2</hypersistence-utils-hibernate-60.version>
 		<schematic.version>0.2.0</schematic.version>
 		<javafaker.version>1.0.2</javafaker.version>
 		<rider-core.version>1.39.0</rider-core.version>
