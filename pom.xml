@@ -18,7 +18,7 @@
 		<hypersistence-utils-hibernate-60.version>3.7.3</hypersistence-utils-hibernate-60.version>
 		<schematic.version>0.2.2</schematic.version>
 		<javafaker.version>1.0.2</javafaker.version>
-		<rider-core.version>1.41.1</rider-core.version>
+		<rider-core.version>1.42.0</rider-core.version>
 	</properties>
 	<dependencies>
 		<dependency>
