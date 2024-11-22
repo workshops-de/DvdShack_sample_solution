@@ -1,19 +1,18 @@
 package de.workshops.dvdshack.application;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.github.javafaker.Faker;
 import de.workshops.dvdshack.repository.Actor;
 import de.workshops.dvdshack.repository.ActorJpaRepository;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 @SpringBootTest
 class ActorServiceTest {
@@ -21,7 +20,7 @@ class ActorServiceTest {
     @Autowired
     private ActorService actorService;
 
-    @MockBean
+    @MockitoBean
     private ActorJpaRepository actorJpaRepository;
 
     @Test
