@@ -1,11 +1,10 @@
 package de.workshops.dvdshack.repository;
 
 
+import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public class ActorJdbcTemplateRepository {
@@ -32,6 +31,6 @@ public class ActorJdbcTemplateRepository {
                 , actor.getFirstName(), actor.getLastName(), actor.getId());
     }
     public void deleteActor(Integer id) {
-        template.execute("DELETE FROM actor WHERE actor_id=%d".formatted(id));
+        template.update("DELETE FROM actor WHERE actor_id = ?", id);
     }
 }

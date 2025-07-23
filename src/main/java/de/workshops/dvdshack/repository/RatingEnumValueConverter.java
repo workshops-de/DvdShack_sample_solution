@@ -1,47 +1,17 @@
 package de.workshops.dvdshack.repository;
 
-import org.hibernate.engine.spi.SharedSessionContractImplementor;
-import org.hibernate.type.descriptor.converter.spi.EnumValueConverter;
-import org.hibernate.type.descriptor.java.EnumJavaType;
-import org.hibernate.type.descriptor.java.JavaType;
-import org.hibernate.type.descriptor.java.ObjectJavaType;
-import org.hibernate.type.descriptor.jdbc.JdbcType;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
-import java.io.Serializable;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Locale;
+@Converter(autoApply = true)
+public class RatingEnumValueConverter implements AttributeConverter<Rating, String> {
 
-public class RatingEnumValueConverter implements EnumValueConverter<Rating, Object>, Serializable {
-    private final EnumJavaType<Rating> enumJavaType;
-    private final JdbcType jdbcType;
-
-    public RatingEnumValueConverter(EnumJavaType<Rating> enumJavaType, JdbcType jdbcType) {
-        this.enumJavaType = enumJavaType;
-        this.jdbcType = jdbcType;
-    }
-
-    public EnumJavaType<Rating> getDomainJavaType() {
-        return this.enumJavaType;
-    }
-
-    public JavaType<Object> getRelationalJavaType() {
-        return new ObjectJavaType();
-    }
-
-    public Rating toDomainValue(Object relationalForm) {
-        return switch ((String)relationalForm) {
-            case "G" -> Rating.G;
-            case "PG" -> Rating.PG;
-            case "PG-13" -> Rating.PG_13;
-            case "R" -> Rating.R;
-            case "NC-17" -> Rating.NC_17;
-            default -> throw new IllegalStateException("Unexpected value: " + relationalForm);
-        };
-    }
-
-    public String toRelationalValue(Rating domainForm) {
-        return switch (domainForm) {
+    @Override
+    public String convertToDatabaseColumn(Rating rating) {
+        if (rating == null) {
+            return null;
+        }
+        return switch (rating) {
             case G -> "G";
             case PG -> "PG";
             case PG_13 -> "PG-13";
@@ -50,15 +20,26 @@ public class RatingEnumValueConverter implements EnumValueConverter<Rating, Obje
         };
     }
 
-    public int getJdbcTypeCode() {
-        return this.jdbcType.getJdbcTypeCode();
+    @Override
+    public Rating convertToEntityAttribute(String dbValue) {
+        if (dbValue == null) {
+            return null;
+        }
+        return switch (dbValue) {
+            case "G" -> Rating.G;
+            case "PG" -> Rating.PG;
+            case "PG-13" -> Rating.PG_13;
+            case "R" -> Rating.R;
+            case "NC-17" -> Rating.NC_17;
+            default -> throw new IllegalStateException("Unexpected value: " + dbValue);
+        };
     }
 
-    public String toSqlLiteral(Object value) {
-        return String.format(Locale.ROOT, "'%s'", ((Rating)value).name());
+    public Rating toDomainValue(String relationalForm) {
+        return convertToEntityAttribute(relationalForm);
     }
 
-    public void writeValue(PreparedStatement statement, Rating value, int position, SharedSessionContractImplementor session) throws SQLException {
-        // nothing to do here
+    public String toRelationalValue(Rating domainForm) {
+        return convertToDatabaseColumn(domainForm);
     }
 }

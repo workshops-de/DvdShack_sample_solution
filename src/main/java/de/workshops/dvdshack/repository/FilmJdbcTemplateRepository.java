@@ -1,14 +1,13 @@
 package de.workshops.dvdshack.repository;
 
+import java.sql.Array;
+import java.time.Year;
+import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import java.sql.Array;
-import java.time.Year;
-import java.util.List;
 
 @Repository
 public class FilmJdbcTemplateRepository {
@@ -29,8 +28,9 @@ public class FilmJdbcTemplateRepository {
     }
 
     public List<Film> findAllFilmsWithRating(Rating rating) {
-        final var ratingEnumValueConverter = new RatingEnumValueConverter(null, null);
-        String sql = "SELECT film_id as id, title, rating FROM film WHERE rating='%s'".formatted(ratingEnumValueConverter.toRelationalValue(rating));
+        final var ratingEnumValueConverter = new RatingEnumValueConverter();
+        String sql = "SELECT film_id as id, title, rating FROM film WHERE rating=?";
+        String ratingValue = ratingEnumValueConverter.toRelationalValue(rating);
 
         return template.query(sql, (rs, rowNum) -> {
             final var film = new Film();
@@ -38,7 +38,7 @@ public class FilmJdbcTemplateRepository {
             film.setTitle(rs.getString(rs.findColumn("title")));
             film.setRating(ratingEnumValueConverter.toDomainValue(rs.getString(rs.findColumn("rating"))));
             return film;
-        });
+        }, ratingValue);
     }
 
     public List<Film> findAllFilmsWithActor(Actor actor) {

@@ -1,5 +1,9 @@
 package de.workshops.dvdshack.repository;
 
+// Note: This class uses deprecated Hibernate APIs and has been temporarily disabled
+// The Rating field in Film entity now uses the simpler RatingEnumValueConverter with @Convert annotation
+
+/*
 import org.hibernate.type.EnumType;
 import org.hibernate.type.SqlTypes;
 import org.hibernate.type.descriptor.java.EnumJavaType;
@@ -28,3 +32,4 @@ public class RatingType extends EnumType<Rating> {
         return new ObjectJdbcType(SqlTypes.OTHER);
     }
 }
+*/
